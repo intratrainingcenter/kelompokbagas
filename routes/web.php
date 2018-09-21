@@ -15,9 +15,9 @@ Route::get('/', function () {
     return view('content.content');
 })->middleware('testMiddleware');
 
-Route::get('/nama/{id}', function($id){
-  return $id;
-});
+// Route::get('/nama/{id}', function($id){
+//   return $id;
+// });
 Route::get('/datasiswa', function(){
   return view('content/datasiswa/datasiswa');
 });
@@ -30,11 +30,11 @@ Route::get('/kelas', function(){
 Route::get('/matapelajaran', function(){
   return view('content/matapelajaran/matapelajaran');
 });
-Route::get('/absen', function(){
-  return view('content/absen/absen');
-});
+// Route::get('/absen', function(){
+//   return view('content/absen/absen');
+// });
 Route::get('/jadwalpiket', function(){
   return view('content/jadwalpiket/jadwalpiket');
 });
-
 Route::resource('seluruh', 'testcontrollerApi');
+Route::resource('absen','absensiControler');
