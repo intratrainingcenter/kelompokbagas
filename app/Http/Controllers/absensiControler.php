@@ -38,7 +38,16 @@ class absensiControler extends Controller
      */
     public function store(Request $request)
     {
-        //
+      absensi::create([
+      'nis' => request()->get('nis'),
+      'nama_siswa' => request()->get('nama_siswa'),
+      'id_kategori' => str_slug(request()->get('id_kategori')),
+      'presensi' => request()->get('presensi'),
+      'keterangan' => request()->get('keterangan'),
+  ]);;
+      return redirect()->route('absen.index')
+                      ->with('success','barang created successfully');
+
     }
 
     /**
