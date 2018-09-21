@@ -7,16 +7,6 @@
 <section class="content-header">
   <h1>
     Siswa siswa
-    <small>Optional ssdfdsgdsf</small>
-    <small>Optional ssdfdsgdsf</small>
-    <small>Optional ssdfdsgdsf</small>
-    <small>Optional ssdfdsgdsf</small>
-    <small>Optional ssdfdsgdsf</small>
-    <small>Optional ssdfdsgdsf</small>
-    <small>Optional ssdfdsgdsf</small>
-    <small>Optional ssdfdsgdsf</small>
-    <small>Optional ssdfdsgdsf</small>
-    <small>Optional ssdfdsgdsf</small>
   </h1>
   <ol class="breadcrumb">
     <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
