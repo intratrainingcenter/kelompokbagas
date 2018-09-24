@@ -1,38 +1,44 @@
 @extends('index')
 
 @section('title', 'AdminLTE')
+@section('someCSS')
+<link href="{{ asset('assets/vendors/datatables.net-bs/css/dataTables.bootstrap.min.css') }}" rel="stylesheet">
+<link href="{{ asset('assets/vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css') }}" rel="stylesheet">
+<link href="{{ asset('assets/vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css') }}" rel="stylesheet">
+<link href="{{ asset('assets/vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css') }}" rel="stylesheet">
+<link href="{{ asset('assets/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css') }}" rel="stylesheet">
+@endsection
+
+@section('someJS')
+@endsection
 
 @section('content')
 <!-- Content Header (Page header) -->
 <section class="content-header">
   <h1>
-    Siswa cxfdecgfde
+    Absen
+    <small>Data Absensi Siswa</small>
   </h1>
-  <ol class="breadcrumb">
-    <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
-    <li class="active">Here</li>
-  </ol>
 </section>
-
 
 <!-- Main content -->
 <section class="content container-fluid">
-<div class="x_panel">
-  <div class="x-content">
-    <div class="clearfix"></div>
-          <div clas="row">
-          <div class="col-md-12 col-sm-12 col-xs-12">
-            <div class="row clearfix">
-                  <form action="#" method="post" id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
-                  <div class="container-fluid">
+  <div class="x_panel">
+    <div class="x_content">
+      <div class="clearfix"></div>
+     				<div class="row">
+     					<div class="col-md-12 col-sm-12 col-xs-12">
+     								<div class="row clearfix">
+     											<form action="#" method="post" id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
+     											<div class="container-fluid">
      											@csrf
      												<input type="hidden" name="id_ruangan" class="form-control"/>
 
      								<div class="col-md-6">
      										<label for="kode" class="control-label">NIS Siswa</label>
-     										<div class=HEADER"form-group">
-     												<input HEADERtype="text" name="nama_ruangan" value="" class="form-control" required=""/>
-     										</div>HEADER
+     										<div class="form-group">
+     												<input type="text" name="nama_ruangan" value="" class="form-control" required=""/>
+     										</div>
      								</div>
      								<div class="col-md-6">
      										<label for="kode" class="control-label">Nama Siswa</label>
@@ -89,10 +95,9 @@
       <thead>
         <tr>
           <th class="column-title">No</th>
-          <th class="column-title">Nama kelas</th>
-          <th class="column-title">Jumlah Siswa</th>
-          <th class="column-title">Absensi
-          </th>
+          <th class="column-title">Nis Siswa</th>
+          <th class="column-title">Nama Siswa</th>
+          <th class="column-title">Absensi</th>
           <th class="column-title">Keterangan</th>
           <th class="column-title">Action</th>
         </tr>
