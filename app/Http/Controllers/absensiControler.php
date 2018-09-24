@@ -38,16 +38,7 @@ class absensiControler extends Controller
      */
     public function store(Request $request)
     {
-      absensi::create([
-      'nis' => request()->get('nis'),
-      'nama_siswa' => request()->get('nama_siswa'),
-      'id_kategori' => str_slug(request()->get('id_kategori')),
-      'presensi' => request()->get('presensi'),
-      'keterangan' => request()->get('keterangan'),
-  ]);;
-      return redirect()->route('absen.index')
-                      ->with('success','absensi created successfully');
-
+        //
     }
 
     /**
@@ -69,9 +60,7 @@ class absensiControler extends Controller
      */
     public function edit($id)
     {
-      $absensi = absensi::find($id);
-      // dd($absensi->nis);
-      return view('content/absen/absen_edit', compact('absensi'));
+        //
     }
 
     /**
@@ -83,17 +72,7 @@ class absensiControler extends Controller
      */
     public function update(Request $request, $id)
     {
-      $absensi = absensi::find($id);
-      $absensi->nis = $request->nis;
-      $absensi->nama_siswa = $request->nama_siswa;
-      $absensi->presensi = $request->presensi;
-      $absensi->keterangan = $request->keterangan;
-      $absensi->save();
-      // dd($absensi);
-      // return view('content/absen/absen', compact('absensi'));
-      // return redirect('absen');
-      return redirect()->route('absen.index')
-                      ->with('edit','absensi update successfully');
+        //
     }
 
     /**
@@ -104,9 +83,6 @@ class absensiControler extends Controller
      */
     public function destroy($id)
     {
-      $absensi = absensi::find($id);
-      $absensi->delete();
-      // dd($absensi);
-      return redirect()->route('absen.index')->with('delete','absensi deleted successfully');
+        //
     }
 }
