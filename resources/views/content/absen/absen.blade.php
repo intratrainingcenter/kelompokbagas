@@ -25,15 +25,20 @@
 <section class="content container-fluid">
   <div class="x_panel">
     <div class="x_content">
-      @if ($message = Session::get('success'))
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
-    <div class="alert alert-success">
-        <p>{{ $message }}</p>
-    </div>
-@endif
-
 @if ($message = Session::get('success'))
     <div class="alert alert-success alert alert-success alert-dismissible fade in" role="alert" >
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
+      </button>
+        <p>{{ $message }}</p>
+    </div>
+    @elseif ($message = Session::get('edit'))
+    <div class="alert alert-warning alert alert-warning alert-dismissible fade in" role="alert" >
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
+      </button>
+        <p>{{ $message }}</p>
+    </div>
+    @elseif ($message = Session::get('delete'))
+    <div class="alert alert-danger alert alert-danger alert-dismissible fade in" role="alert" >
       <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
       </button>
         <p>{{ $message }}</p>
@@ -121,10 +126,10 @@
     			<td>{{$absensi->presensi}}</td>
     			<td>{{$absensi->keterangan}}</td>
           <td>
-              <form method="post" action="">
-                <a href="" type="button" class="btn btn-warning"><i class="fa fa-pencil"></i></a>
-                <a href="" type="button" class="btn btn-danger"><i class="fa fa-close"></i></a>
-              </form>
+              <a href="{{ route('absen.edit',$absensi->id) }}" type="button" class="btn btn-warning"><i class="fa fa-pencil"></i></a>
+              {!! Form::open(['method' => 'DELETE','route' => ['absen.destroy', $absensi->id]]) !!}
+              <a><button  onclick=" return confirm('Anda Yakin Menghapus Absensi')" type="submit" class="btn btn-danger"><i class="fa fa-close"></i></button></a>
+              {!! Form::close() !!}
           </td>
     		</tr>
          @endforeach
