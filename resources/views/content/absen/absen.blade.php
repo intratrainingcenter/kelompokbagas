@@ -10,6 +10,17 @@
 @endsection
 
 @section('someJS')
+<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap.min.js"></script>
+<script>
+$(function() {
+  $('#example').DataTable();
+  // $('#example2').DataTable({
+  //   ''
+  // });
+});
+</script>
 @endsection
 
 @section('content')
@@ -43,6 +54,12 @@
       </button>
         <p>{{ $message }}</p>
     </div>
+    @elseif ($message = Session::get('not_success'))
+    <div class="alert alert-danger alert alert-danger alert-dismissible fade in" role="alert" >
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
+      </button>
+        <p>{{ $message }}</p>
+    </div>
 @endif
 
 
@@ -56,12 +73,6 @@
      										<label for="kode" class="control-label">NIS Siswa</label>
      										<div class="form-group">
                             {!! Form::number('nis', null, array('placeholder' => 'Nis','class' => 'form-control','required' => '')) !!}
-     										</div>
-     								</div>
-     								<div class="col-md-6">
-     										<label for="kode" class="control-label">Nama Siswa</label>
-     										<div class="form-group">
-     												{!! Form::text('nama_siswa', null, array('placeholder' => 'Nama','class' => 'form-control','required' => '')) !!}
      										</div>
      								</div>
                     <div class="col-md-6">
@@ -101,7 +112,7 @@
       <br>
     </div>
     <div class="x_content">
-      <table id="tabel-print" class="table table-striped" style="width:100%">
+      <table id="example" class="table table-striped table-bordered" style="width:100%">
       <thead>
         <tr>
           <th class="column-title">No</th>
@@ -116,16 +127,16 @@
     	$no= 1;
     	@endphp
     	<tbody>
-        @foreach($absensi as $absensi)
+        @foreach($attendance as $attendances)
     		<tr>
     			<td>{{$no++}}</td>
-    			<td>{{$absensi->nis}}</td>
-    			<td>{{$absensi->nama_siswa}}</td>
-    			<td>{{$absensi->presensi}}</td>
-    			<td>{{$absensi->keterangan}}</td>
+    			<td>{{$attendances->join_to_siswa['nis']}}</td>
+    			<td>{{$attendances->join_to_siswa['nama_siswa']}}</td>
+    			<td>{{$attendances->presensi}}</td>
+    			<td>{{$attendances->keterangan}}</td>
           <td>
-              <a href="{{ route('absen.edit',$absensi->id) }}" type="button" class="btn btn-warning"><i class="fa fa-pencil"></i></a>
-              {!! Form::open(['method' => 'DELETE','route' => ['absen.destroy', $absensi->id]]) !!}
+              <a href="{{ route('absen.edit',$attendances->id) }}" type="button" class="btn btn-warning"><i class="fa fa-pencil"></i></a>
+              {!! Form::open(['method' => 'DELETE','route' => ['absen.destroy', $attendances->id]]) !!}
               <a><button  onclick=" return confirm('Anda Yakin Menghapus Absensi')" type="submit" class="btn btn-danger"><i class="fa fa-close"></i></button></a>
               {!! Form::close() !!}
           </td>
