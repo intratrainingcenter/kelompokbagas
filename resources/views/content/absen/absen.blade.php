@@ -10,6 +10,17 @@
 @endsection
 
 @section('someJS')
+<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap.min.js"></script>
+<script>
+$(function() {
+  $('#example').DataTable();
+  // $('#example2').DataTable({
+  //   ''
+  // });
+});
+</script>
 @endsection
 
 @section('content')
@@ -101,7 +112,7 @@
       <br>
     </div>
     <div class="x_content">
-      <table id="tabel-print" class="table table-striped" style="width:100%">
+      <table id="example" class="table table-striped table-bordered" style="width:100%">
       <thead>
         <tr>
           <th class="column-title">No</th>

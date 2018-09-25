@@ -64,6 +64,18 @@
      												{!! Form::text('nama_siswa', null, array('placeholder' => 'Nama','class' => 'form-control','required' => '')) !!}
      										</div>
      								</div>
+     								<div class="col-md-6">
+     										<label for="kode" class="control-label">Jenis Kelamin</label>
+     										<div class="form-group">
+     												{!! Form::text('nama_siswa', null, array('placeholder' => 'Nama','class' => 'form-control','required' => '')) !!}
+     										</div>
+     								</div>
+                    <div class="col-md-6">
+                      <label for="kode" class="control-label">Tempat Tanggal Lahir</label>
+                      <div class="form-group">
+                        {!!Form::select('presensi', ['Sakit' => 'Sakit', 'Ijin' => 'Ijin', 'Alfa' => 'Alfa'], null, array('class' => 'form-control','placeholder' => 'Mohon Masukan Presensi Siswa','required' => ''))!!}
+                      </div>
+                    </div>
                     <div class="col-md-6">
                       <label for="kode" class="control-label">Absensi</label>
                       <div class="form-group">
@@ -107,6 +119,8 @@
           <th class="column-title">No</th>
           <th class="column-title">Nis Siswa</th>
           <th class="column-title">Nama Siswa</th>
+          <th class="column-title">Jenis Kelamin</th>
+          <th class="column-title">Tempat tanggal lahir</th>
           <th class="column-title">Absensi</th>
           <th class="column-title">Keterangan</th>
           <th class="column-title">Action</th>
@@ -116,18 +130,20 @@
     	$no= 1;
     	@endphp
     	<tbody>
-        @foreach($absensi as $absensi)
+        @foreach($student as $students)
     		<tr>
     			<td>{{$no++}}</td>
-    			<td>{{$absensi->nis}}</td>
-    			<td>{{$absensi->nama_siswa}}</td>
-    			<td>{{$absensi->presensi}}</td>
-    			<td>{{$absensi->keterangan}}</td>
+    			<td>{{$students->nis}}</td>
+    			<td>{{$students->nama_siswa}}</td>
+    			<td>{{$students->jenis_klamin}}</td>
+    			<td>{{$students->tempat_tanggal_lahir}}</td>
+    			<td>{{$students->join_absensi->presensi}}</td>
+    			<td>{{$students->join_absensi->keterangan}}</td>
           <td>
-              <a href="{{ route('absen.edit',$absensi->id) }}" type="button" class="btn btn-warning"><i class="fa fa-pencil"></i></a>
-              {!! Form::open(['method' => 'DELETE','route' => ['absen.destroy', $absensi->id]]) !!}
+              <a href="" type="button" class="btn btn-warning"><i class="fa fa-pencil"></i></a>
+
               <a><button  onclick=" return confirm('Anda Yakin Menghapus Absensi')" type="submit" class="btn btn-danger"><i class="fa fa-close"></i></button></a>
-              {!! Form::close() !!}
+
           </td>
     		</tr>
          @endforeach
