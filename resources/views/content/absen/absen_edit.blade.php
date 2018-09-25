@@ -25,6 +25,13 @@
 <section class="content container-fluid">
   <div class="x_panel">
     <div class="x_content">
+      @if ($message = Session::get('success'))
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
+    <div class="alert alert-success">
+        <p>{{ $message }}</p>
+    </div>
+@endif
+
 @if ($message = Session::get('success'))
     <div class="alert alert-success alert alert-success alert-dismissible fade in" role="alert" >
       <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
@@ -32,6 +39,7 @@
         <p>{{ $message }}</p>
     </div>
 @endif
+
 
       <div class="clearfix"></div>
      				<div class="row">
@@ -79,50 +87,6 @@
       </div>
     </div>
     </div>
-
-    <div class="x_panel">
-    <div class="x_title">
-    <h2> Data Absensi Siswa</h2>
-    <ul class="nav navbar-right panel_toolbox">
-      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-      </li>
-    </ul>
-    <div class="clearfix"></div>
-    </div>
-    <div class="x_content">
-      <table id="tabel-print" class="table table-striped" style="width:100%">
-      <thead>
-        <tr>
-          <th class="column-title">No</th>
-          <th class="column-title">Nis Siswa</th>
-          <th class="column-title">Nama Siswa</th>
-          <th class="column-title">Absensi</th>
-          <th class="column-title">Keterangan</th>
-          <th class="column-title">Action</th>
-        </tr>
-      </thead>
-    	@php
-    	$no= 1;
-    	@endphp
-    	<tbody>
-        @foreach($absensi as $absensi)
-    		<tr>
-    			<td>{{$no++}}</td>
-    			<td>{{$absensi->nis}}</td>
-    			<td>{{$absensi->nama_siswa}}</td>
-    			<td>{{$absensi->presensi}}</td>
-    			<td>{{$absensi->keterangan}}</td>
-          <td>
-              <form method="post" action="">
-                <a href="{{ route('Barang.edit',$barang->id_barang) }}" type="button" class="btn btn-warning"><i class="fa fa-pencil"></i></a>
-                <a href="" type="button" class="btn btn-danger"><i class="fa fa-close"></i></a>
-              </form>
-          </td>
-    		</tr>
-         @endforeach
-    	</tbody>
-     </table>
-    </form>
 </section>
 <!-- /.content -->
 @endsection
