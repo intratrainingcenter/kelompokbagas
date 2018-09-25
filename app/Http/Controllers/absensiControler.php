@@ -41,13 +41,12 @@ class absensiControler extends Controller
     public function store(Request $request)
     {
       $find = siswa::where('nis', $request->nis)->first();
-      // dd($find);
+      // dd($find->nama_siswa);
       if ($find != null) {
         $getsiswa = siswa::where('nis', $request->nis)->first();
-        // dd($getsiswa);
+        $id_siswa = $getsiswa->id;
         absensi::create([
-          'id_siswa' => $getsiswa,
-          'id_kategori' => str_slug(request()->get('id_kategori')),
+          'id_siswa' => $id_siswa,
           'presensi' => request()->get('presensi'),
           'keterangan' => request()->get('keterangan'),
         ]);

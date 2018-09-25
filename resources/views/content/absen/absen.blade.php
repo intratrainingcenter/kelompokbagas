@@ -75,12 +75,6 @@ $(function() {
                             {!! Form::number('nis', null, array('placeholder' => 'Nis','class' => 'form-control','required' => '')) !!}
      										</div>
      								</div>
-     								<div class="col-md-6">
-     										<label for="kode" class="control-label">Nama Siswa</label>
-     										<div class="form-group">
-     												{!! Form::text('nama_siswa', null, array('placeholder' => 'Nama','class' => 'form-control','required' => '')) !!}
-     										</div>
-     								</div>
                     <div class="col-md-6">
                       <label for="kode" class="control-label">Absensi</label>
                       <div class="form-group">
