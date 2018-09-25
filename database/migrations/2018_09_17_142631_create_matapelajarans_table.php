@@ -15,9 +15,9 @@ class CreateMatapelajaransTable extends Migration
     {
         Schema::create('matapelajarans', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('kode_pelajaran');
             $table->string('nama_pelajaran');
-            $table->string('guru_pelajaran');
-            $table->string('kondisi_buku');
+            $table->string('jam');
             $table->timestamps();
         });
     }
