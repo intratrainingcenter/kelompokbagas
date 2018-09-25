@@ -17,7 +17,7 @@ class CreateKelasTable extends Migration
             $table->increments('id');
             $table->string('nama_kelas');
             $table->string('nama_wali_kelas');
-            $table->string('attribute_kelas');
+            $table->string('ketua_kelas');
             $table->timestamps();
         });
     }
