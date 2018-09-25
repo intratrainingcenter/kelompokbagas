@@ -69,7 +69,7 @@ $(function() {
      								<div class="row clearfix">
      											<div class="container-fluid">
                   {!! Form::open(array('route' => 'absen.store','method'=>'POST','files' => 'true')) !!}
-     								<div class="col-md-6">
+     								<div class="col-md-6" >
      										<label for="kode" class="control-label">NIS Siswa</label>
      										<div class="form-group">
                             {!! Form::number('nis', null, array('placeholder' => 'Nis','class' => 'form-control','required' => '')) !!}

@@ -40,12 +40,9 @@
      								<div class="row clearfix">
      											<div class="container-fluid">
                   {!! Form::model($attendance, ['method' => 'PATCH', 'files' => 'true', 'route' =>['absen.update', $attendance->id]]) !!}
-     								<div class="col-md-6">
-     										<label for="kode" class="control-label">NIS Siswa</label>
-     										<div class="form-group">
+     										<div class="form-group" hidden>
                             {!! Form::text('nis', $attendance->join_to_siswa['nis'], array('class' => 'form-control','required' => '')) !!}
      										</div>
-     								</div>
                     <div class="col-md-6">
                       <label for="kode" class="control-label">Absensi</label>
                       <div class="form-group">

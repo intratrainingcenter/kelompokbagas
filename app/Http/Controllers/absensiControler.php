@@ -18,7 +18,9 @@ class absensiControler extends Controller
       $attendance = absensi::with('join_to_siswa')->get();
       // print_r($attendance[0]->join_to_siswa->nis);
       // dd($attendance);
-      $student = siswa::all();
+
+
+      // dd($attendance);
       return view('content/absen/absen', compact('attendance','student'));
     }
 
