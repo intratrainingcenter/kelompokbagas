@@ -38,3 +38,6 @@ Route::get('/jadwalpiket', function(){
 });
 Route::resource('seluruh', 'testcontrollerApi');
 Route::resource('absen','absensiControler');
+Route::resource('kelas','kelascontroller');
+
+Route::get('url','Controller@fungsi')->name('nameroute');

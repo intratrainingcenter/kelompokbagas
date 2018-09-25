@@ -49,7 +49,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <ul class="sidebar-menu" data-widget="tree">
         <!-- Optionally, you can add icons to the links -->
         <li><a href="siswa"><i class="fa fa-link"></i> <span>Siswa</span></a></li>
-        <li><a href="{{kelas('kelas.index')}}"><i class="fa fa-link"></i> <span>Kelas</span></a></li>
+        <li><a href="{{route('kelas.index')}}"><i class="fa fa-calendar"></i> <span>Kelas</span></a></li>
         <li><a href="matapelajaran"><i class="fa fa-link"></i> <span>Mata Pelajaran</span></a></li>
         <li><a href="jadwalpiket"><i class="fa fa-link"></i> <span>Jadwal Piket</span></a></li>
         <li><a href="{{route('absen.index')}}"><i class="fa fa-calendar-check-o"></i> <span>Absensi</span></a></li>
