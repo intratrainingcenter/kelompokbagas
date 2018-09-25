@@ -43,13 +43,7 @@
      								<div class="col-md-6">
      										<label for="kode" class="control-label">NIS Siswa</label>
      										<div class="form-group">
-                            {!! Form::text('nis', $attendance->join_to_siswa->nis, array('class' => 'form-control','required' => '')) !!}
-     										</div>
-     								</div>
-     								<div class="col-md-6">
-     										<label for="kode" class="control-label">Nama Siswa</label>
-     										<div class="form-group">
-     												{!! Form::text('nama_siswa', $attendance->join_to_siswa->nama_siswa, array('placeholder' => 'Nama','class' => 'form-control','required' => '')) !!}
+                            {!! Form::text('nis', $attendance->join_to_siswa['nis'], array('class' => 'form-control','required' => '')) !!}
      										</div>
      								</div>
                     <div class="col-md-6">

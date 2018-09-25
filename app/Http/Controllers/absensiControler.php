@@ -78,9 +78,10 @@ class absensiControler extends Controller
      */
     public function edit($id)
     {
-      $attendance = absensi::with('join_to_siswa')->whereIn('id',explode(",",$id))
-                          ->get();
+      $attendance = absensi::with('join_to_siswa')->where('id', $id)->first();
       // dd($attendance->nis);
+
+      $student = siswa::all();
       return view('content/absen/absen_edit', compact('attendance'));
     }
 
@@ -93,17 +94,25 @@ class absensiControler extends Controller
      */
     public function update(Request $request, $id)
     {
-      $attendance = absensi::find($id);
-      $attendance->nis = $request->nis;
-      $attendance->nama_siswa = $request->nama_siswa;
-      $attendance->presensi = $request->presensi;
-      $attendance->keterangan = $request->keterangan;
-      $attendance->save();
-      // dd($attendance);
-      // return view('content/absen/absen', compact('absensi'));
-      // return redirect('absen');
-      return redirect()->route('absen.index')
-                      ->with('edit','absensi update successfully');
+      // dd($request);
+      $getsiswa = siswa::where('nis', $request->nis)->first();
+      // dd($attendances);
+      $id_siswa = $getsiswa->id;
+      if ($getsiswa != null) {
+        $attendance = absensi::find($id);
+        $getsiswa->id_siswa = $id_siswa;
+        $attendance->presensi = $request->presensi;
+        $attendance->keterangan = $request->keterangan;
+        $attendance->save();
+        // dd($attendance);
+        // return view('content/absen/absen', compact('absensi'));
+        // return redirect('absen');
+        return redirect()->route('absen.index')
+        ->with('edit','absensi update successfully');
+      }else {
+        return redirect()->route('absen.index')
+        ->with('edit','absensi update successfully');
+      }
     }
 
     /**
