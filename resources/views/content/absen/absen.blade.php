@@ -54,6 +54,12 @@ $(function() {
       </button>
         <p>{{ $message }}</p>
     </div>
+    @elseif ($message = Session::get('not_success'))
+    <div class="alert alert-danger alert alert-danger alert-dismissible fade in" role="alert" >
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
+      </button>
+        <p>{{ $message }}</p>
+    </div>
 @endif
 
 
@@ -127,16 +133,16 @@ $(function() {
     	$no= 1;
     	@endphp
     	<tbody>
-        @foreach($absensi as $absensi)
+        @foreach($attendance as $attendances)
     		<tr>
     			<td>{{$no++}}</td>
-    			<td>{{$absensi->nis}}</td>
-    			<td>{{$absensi->nama_siswa}}</td>
-    			<td>{{$absensi->presensi}}</td>
-    			<td>{{$absensi->keterangan}}</td>
+    			<td>{{$attendances->join_to_siswa['nis']}}</td>
+    			<td>{{$attendances->join_to_siswa['nama_siswa']}}</td>
+    			<td>{{$attendances->presensi}}</td>
+    			<td>{{$attendances->keterangan}}</td>
           <td>
-              <a href="{{ route('absen.edit',$absensi->id) }}" type="button" class="btn btn-warning"><i class="fa fa-pencil"></i></a>
-              {!! Form::open(['method' => 'DELETE','route' => ['absen.destroy', $absensi->id]]) !!}
+              <a href="{{ route('absen.edit',$attendances->id) }}" type="button" class="btn btn-warning"><i class="fa fa-pencil"></i></a>
+              {!! Form::open(['method' => 'DELETE','route' => ['absen.destroy', $attendances->id]]) !!}
               <a><button  onclick=" return confirm('Anda Yakin Menghapus Absensi')" type="submit" class="btn btn-danger"><i class="fa fa-close"></i></button></a>
               {!! Form::close() !!}
           </td>

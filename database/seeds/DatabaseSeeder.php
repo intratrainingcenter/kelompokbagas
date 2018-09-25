@@ -13,5 +13,8 @@ class DatabaseSeeder extends Seeder
     {
        $this->call(absensiTableSeeder::class);
        $this->call(siswaTableSeeder::class);
+       $this->call(jadwalpiketTableSeeder::class);
+       $this->call(kelasTableSeeder::class);
+       $this->call(matapelajaranTableSeeder::class);
     }
 }
