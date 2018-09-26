@@ -10,14 +10,25 @@
 @endsection
 
 @section('someJS')
+<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap.min.js"></script>
+<script>
+$(function() {
+  $('#example').DataTable();
+  // $('#example2').DataTable({
+  //   ''
+  // });
+});
+</script>
 @endsection
 
 @section('content')
 <!-- Content Header (Page header) -->
 <section class="content-header">
   <h1>
-    Absen
-    <small>Data Absensi Siswa</small>
+    Siswa
+    <small>Data Siswa</small>
   </h1>
 </section>
 
@@ -51,35 +62,51 @@
      					<div class="col-md-12 col-sm-12 col-xs-12">
      								<div class="row clearfix">
      											<div class="container-fluid">
-                  {!! Form::open(array('route' => 'absen.store','method'=>'POST','files' => 'true')) !!}
+                    {!! Form::model($student, ['method' => 'PATCH', 'files' => 'true', 'route' =>['siswa.update', $student->id]]) !!}
      								<div class="col-md-6">
      										<label for="kode" class="control-label">NIS Siswa</label>
      										<div class="form-group">
-                            {!! Form::number('nis', null, array('placeholder' => 'Nis','class' => 'form-control','required' => '')) !!}
+                            {!! Form::number('nis', $student->nis, array('class' => 'form-control','required' => '')) !!}
      										</div>
      								</div>
      								<div class="col-md-6">
      										<label for="kode" class="control-label">Nama Siswa</label>
      										<div class="form-group">
-     												{!! Form::text('nama_siswa', null, array('placeholder' => 'Nama','class' => 'form-control','required' => '')) !!}
+     												{!! Form::text('nama_siswa', $student->nama_siswa, array('placeholder' => 'Nama','class' => 'form-control','required' => '')) !!}
      										</div>
      								</div>
                     <div class="col-md-6">
-                      <label for="kode" class="control-label">Absensi</label>
+                      <label for="kode" class="control-label">Jenis Kelamin</label>
                       <div class="form-group">
-                        {!!Form::select('presensi', ['Sakit' => 'Sakit', 'Ijin' => 'Ijin', 'Alfa' => 'Alfa'], null, array('class' => 'form-control','placeholder' => 'Mohon Masukan Presensi Siswa','required' => ''))!!}
+                        <select class="form-control" name="jenis_klamin">
+                          <option value="{{$student->jenis_klamin}}">{{$student->jenis_klamin}}</option>
+                          <option value="">========================================</option>
+                          <option value="Laki-Laki">Laki-Laki</option>
+                          <option value="Perempuan">Perempuan</option>
+                        </select>
                       </div>
                     </div>
      								<div class="col-md-6">
-     										<label for="kode" class="control-label">Keterangan</label>
+     										<label for="kode" class="control-label">Tanggal Lahir</label>
      										<div class="form-group">
-     												{!! Form::textarea('keterangan', null, array('placeholder' => 'keterangan','class' => 'form-control','required' => '','style' => 'width:500px; height:100px;')) !!}
+                          <input class="form-control" type="text" name="" placeholder="{{$student->tempat_tanggal_lahir}}" disabled>
+     												{!! Form::date('tanggal_lahir', null, array('class' => 'form-control','required' => '')) !!}
      										</div>
      								</div>
+                    <div class="col-md-6">
+                      <label for="kode" class="control-label">Kelas</label>
+                      <div class="form-group">
+                      <select class="form-control" name="kelas">
+                        @foreach($class as $classs)
+                      <option value="{{$classs->id}}">{{$classs->kode_kelas}}</option>
+                      @endforeach
+                      </select>
+                      </div>
+                    </div>
      								 <div class="ln_solid"></div>
      									<div class="form-group">
      										<div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="submit" value="Submit" class="btn btn-success">
+                          <input type="submit" value="Edit" class="btn btn-warning">
      										<div class="col-md-6 col-sm-6 col-xs-12">
                           <button class="btn btn-primary" type="reset">Reset</button>
      										</div>
@@ -92,50 +119,6 @@
       </div>
     </div>
     </div>
-
-    <div class="x_panel">
-    <div class="x_title">
-    <h2> Data Absensi Siswa</h2>
-    <ul class="nav navbar-right panel_toolbox">
-      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-      </li>
-    </ul>
-    <div class="clearfix"></div>
-    </div>
-    <div class="x_content">
-      <table id="tabel-print" class="table table-striped" style="width:100%">
-      <thead>
-        <tr>
-          <th class="column-title">No</th>
-          <th class="column-title">Nis Siswa</th>
-          <th class="column-title">Nama Siswa</th>
-          <th class="column-title">Absensi</th>
-          <th class="column-title">Keterangan</th>
-          <th class="column-title">Action</th>
-        </tr>
-      </thead>
-    	@php
-    	$no= 1;
-    	@endphp
-    	<tbody>
-        @foreach($absensi as $absensi)
-    		<tr>
-    			<td>{{$no++}}</td>
-    			<td>{{$absensi->nis}}</td>
-    			<td>{{$absensi->nama_siswa}}</td>
-    			<td>{{$absensi->presensi}}</td>
-    			<td>{{$absensi->keterangan}}</td>
-          <td>
-              <a href="{{ route('absen.edit',$absensi->id) }}" type="button" class="btn btn-warning"><i class="fa fa-pencil"></i></a>
-              {!! Form::open(['method' => 'DELETE','route' => ['absen.destroy', $absensi->id]]) !!}
-              <a><button  onclick=" return confirm('Anda Yakin Menghapus Absensi')" type="submit" class="btn btn-danger"><i class="fa fa-close"></i></button></a>
-              {!! Form::close() !!}
-          </td>
-    		</tr>
-         @endforeach
-    	</tbody>
-     </table>
-    </form>
 </section>
 <!-- /.content -->
 @endsection

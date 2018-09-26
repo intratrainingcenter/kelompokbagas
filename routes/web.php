@@ -38,3 +38,5 @@ Route::get('/jadwalpiket', function(){
 });
 Route::resource('seluruh', 'testcontrollerApi');
 Route::resource('absen','absensiControler');
+Route::resource('siswa','siswaController');
+Route::resource('mapel','mapelController');

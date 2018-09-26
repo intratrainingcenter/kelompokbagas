@@ -39,29 +39,20 @@
      					<div class="col-md-12 col-sm-12 col-xs-12">
      								<div class="row clearfix">
      											<div class="container-fluid">
-                  {!! Form::model($absensi, ['method' => 'PATCH', 'files' => 'true', 'route' =>['absen.update', $absensi->id]]) !!}
-     								<div class="col-md-6">
-     										<label for="kode" class="control-label">NIS Siswa</label>
-     										<div class="form-group">
-                            {!! Form::text('nis', $absensi->nis, array('class' => 'form-control','required' => '')) !!}
+                  {!! Form::model($attendance, ['method' => 'PATCH', 'files' => 'true', 'route' =>['absen.update', $attendance->id]]) !!}
+     										<div class="form-group" hidden>
+                            {!! Form::text('nis', $attendance->join_to_siswa['nis'], array('class' => 'form-control','required' => '')) !!}
      										</div>
-     								</div>
-     								<div class="col-md-6">
-     										<label for="kode" class="control-label">Nama Siswa</label>
-     										<div class="form-group">
-     												{!! Form::text('nama_siswa', $absensi->nama_siswa, array('placeholder' => 'Nama','class' => 'form-control','required' => '')) !!}
-     										</div>
-     								</div>
                     <div class="col-md-6">
                       <label for="kode" class="control-label">Absensi</label>
                       <div class="form-group">
-                        {!!Form::select('presensi', ["$absensi->presensi" => "$absensi->presensi" ,'Sakit' => 'Sakit', 'Ijin' => 'Ijin', 'Alfa' => 'Alfa'], null, array('class' => 'form-control','required' => ''))!!}
+                        {!!Form::select('presensi', ["$attendance->presensi" => "$attendance->presensi" ,'Sakit' => 'Sakit', 'Ijin' => 'Ijin', 'Alfa' => 'Alfa'], null, array('class' => 'form-control','required' => ''))!!}
                       </div>
                     </div>
      								<div class="col-md-6">
      										<label for="kode" class="control-label">Keterangan</label>
      										<div class="form-group">
-     												{!! Form::textarea('keterangan', $absensi->keterangan, array('class' => 'form-control','required' => '','style' => 'width:500px; height:100px;')) !!}
+     												{!! Form::textarea('keterangan', $attendance->keterangan, array('class' => 'form-control','required' => '','style' => 'width:500px; height:100px;')) !!}
      										</div>
      								</div>
      								 <div class="ln_solid"></div>

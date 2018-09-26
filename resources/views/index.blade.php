@@ -48,10 +48,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <!-- Sidebar Menu -->
       <ul class="sidebar-menu" data-widget="tree">
         <!-- Optionally, you can add icons to the links -->
-        <li><a href="siswa"><i class="fa fa-link"></i> <span>Siswa</span></a></li>
-        <li><a href="kelas"><i class="fa fa-link"></i> <span>Kelas</span></a></li>
-        <li><a href="matapelajaran"><i class="fa fa-link"></i> <span>Mata Pelajaran</span></a></li>
-        <li><a href="jadwalpiket"><i class="fa fa-link"></i> <span>Jadwal Piket</span></a></li>
+        <li><a href="siswa"><i class="fa fa-users"></i> <span>Siswa</span></a></li>
+        <li><a href="kelas"><i class="fa fa-building"></i> <span>Kelas</span></a></li>
+        <li><a href="matapelajaran"><i class="fa fa-book"></i> <span>Mata Pelajaran</span></a></li>
+        <li><a href="jadwalpiket"><i class="fa fa-calendar"></i> <span>Jadwal Piket</span></a></li>
         <li><a href="{{route('absen.index')}}"><i class="fa fa-calendar-check-o"></i> <span>Absensi</span></a></li>
       </ul>
     </section>
@@ -88,9 +88,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <script src="{{asset('bower_components/bootstrap/dist/js/bootstrap.min.js')}}"></script>
 <!-- AdminLTE App -->
 <script src="{{asset('dist/js/adminlte.min.js')}}"></script>
-
-<!-- Optionally, you can add Slimscroll and FastClick plugins.
-     Both of these plugins are recommended to enhance the
-     user experience. -->
+@yield('someJS')
 </body>
 </html>

@@ -15,9 +15,8 @@ class CreateJadwalpiketsTable extends Migration
     {
         Schema::create('jadwalpikets', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('nis');
-            $table->string('nama_siswa');
-            $table->string('hari_tanggal');
+            $table->string('id_siswa');
+            $table->string('hari');
             $table->timestamps();
         });
     }
