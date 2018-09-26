@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\kelas;
+use App\siswa;
 
 class kelascontroller extends Controller
 {
@@ -14,6 +15,9 @@ class kelascontroller extends Controller
      */
     public function index()
     {
+        // $clases = kelas::with('join_to_siswa')->get();
+      // print_r($kelas[0]->join_to_siswa->nis);
+      // dd($attendance);
         $kelas = kelas::all();
         return view('content/kelas/kelas',['kelas'=>$kelas]);
     }
@@ -38,16 +42,14 @@ class kelascontroller extends Controller
     {
     // dd($request);
 
-        kelas::create([
-            'nama_kelas' => request()->get('nama_kelas'),
-            'nama_wali_kelas' => request()->get('nama_wali_kelas'),
-            'ketua_kelas' => request()->get('nama_ketua_kelas'),
-        ]);
-        // $add = new kelas;
-        // $add->nama_kelas = $request->nama_kelas;
-        // $add->nama_wali_kelas = $request->nama_wali_kelas;
-        // $add->ketua_kelas = $request->nama_ketua_kelas;
-        // $add->save();
+        // kelas::create([
+        //     'id_siswa' => request()->get('id_siswa'),
+        //     'kode_kelas' => request()->get('kode_kelas'),
+        // ]);
+        $add = new kelas;
+        $add->id_siswa = $request->id_siswa;
+        $add->kode_kelas = $request->kode_kelas;
+        $add->save();
 
             return redirect()->route('kelas.index')->with('success','name kelas created successfully');
     }
@@ -71,9 +73,13 @@ class kelascontroller extends Controller
      */
     public function edit($id)
     {
-        $kelas = kelas::find($id);
-      // dd($kelas->nama_kelas);
-      return redirect()->route('kelas.index')->with('success','Data kelas Update successfully');
+        $kelas = kelas::with('join_to_siswa')->where('id', $id)->first();
+      // dd($kelas->kode_kelas);
+      return view('content/kelas/kelas_edit', compact('kelas','siswa'));
+
+        // $kelas = kelas::find($id);
+        // // dd($kelas->_kelas);
+        // return view('content/kelas/kelas_edit',['kelas'=>$kelas]);
     }
 
     /**
@@ -85,13 +91,13 @@ class kelascontroller extends Controller
      */
     public function update(Request $request, $id)
     {
+        
         $kelas = kelas::find($id);
-      $absensi->nama_kelas = $request->nama_kelas;
-      $absensi->nama_wali_kelas = $request->nama_wali_kelas;
-      $absensi->ketua_kelas = $request->nama_ketua_kelas;
-      $absensi->keterangan = $request->keterangan;
-      $absensi->save();
-      // dd($absensi);
+        // dd($kelas);
+        $kelas->id_kelas = $request->id_kelas;
+        $kelas->kode_kelas = $request->kode_kelas;
+        $kelas->save();
+        // dd($kelas);
       // return view('content/kelas/kelas', compact('absensi'));
       // return redirect('absen');
       return redirect()->route('kelas.index')

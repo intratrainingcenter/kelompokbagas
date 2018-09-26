@@ -26,21 +26,15 @@
      											<div class="container-fluid">
                   {!! Form::open(array('route' => 'kelas.store','method'=>'POST','files' => 'true')) !!}
      								<div class="col-md-12">
-     										<label for="kode" class="control-label">Nama Kelas</label>
+     										<label for="kode" class="control-label">ID Siswa</label>
      										<div class="form-group">
-                            {!! Form::text('nama_kelas', null, array('placeholder' => 'Nama Kelas','class' => 'form-control','required' => '')) !!}
-     										</div>
-     								</div>
-     								<div class="col-md-12">
-     										<label for="kode" class="control-label">Nama Wali Kelas</label>
-     										<div class="form-group">
-     												{!! Form::text('nama_wali_kelas', null, array('placeholder' => 'Nama Wali Kelas','class' => 'form-control','required' => '')) !!}
+                            {!! Form::text('id_siswa', null, array('placeholder' => 'ID Siswa','class' => 'form-control','required' => '')) !!}
      										</div>
      								</div>
                     <div class="col-md-12">
-                      <label for="kode" class="control-label">Nama Ketua Kelas</label>
+                      <label for="kode" class="control-label">Kode Kelas</label>
                       <div class="form-group">
-                            {!! Form::text('nama_ketua_kelas', null, array('placeholder' => 'Nama Ketua Kelas','class' => 'form-control','required' => '')) !!}
+                            {!! Form::text('kode_kelas', null, array('placeholder' => 'Kode Kelas','class' => 'form-control','required' => '')) !!}
                       </div>
                     </div>
      								 <div class="ln_solid"></div>
@@ -68,9 +62,8 @@
       <thead>
         <tr>
           <th>#</th>
-          <th class="column-title">Nama Kelas</th>
-          <th class="column-title">Nama Wali Kelas </th>
-          <th class="column-title">Ketua Kelas</th>
+          <th class="column-title">ID Siswa</th>
+          <th class="column-title">Kode Kelas </th>
           <th> <center>Option </center> </th>
         </tr>
       </thead>
@@ -81,11 +74,10 @@
         @foreach($kelas as $absensi)
     		<tr>
     			<td>{{$no++}}</td>
-    			<td>{{$absensi->nama_kelas}}</td>
-    			<td>{{$absensi->nama_wali_kelas}}</td>
-    			<td>{{$absensi->ketua_kelas}}</td>
+    			<td>{{$absensi->id_siswa}}</td>
+    			<td>{{$absensi->kode_kelas}}</td>
           <td>
-              <a href="{{ route('kelas.edit',$kelas->id) }}" type="button" class="btn btn-warning"><i class="fa fa-pencil"></i></a>
+              <a href="{{ route('kelas.edit',$absensi->id) }}" type="button" class="btn btn-warning"><i class="fa fa-pencil"></i></a>
               {!! Form::open(['method' => 'DELETE','route' => ['kelas.destroy', $absensi->id]]) !!}
               <a><button  onclick=" return confirm('Anda Yakin Menghapus Kelas')" type="submit" class="btn btn-danger"><i class="fa fa-close"></i></button></a>
               {!! Form::close() !!}
