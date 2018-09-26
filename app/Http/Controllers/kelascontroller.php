@@ -39,9 +39,8 @@ class kelascontroller extends Controller
     // dd($request);
 
         kelas::create([
-            'nama_kelas' => request()->get('nama_kelas'),
-            'nama_wali_kelas' => request()->get('nama_wali_kelas'),
-            'ketua_kelas' => request()->get('nama_ketua_kelas'),
+            'id_siswa' => request()->get('id_siswa'),
+            'kode_kelas' => request()->get('kode_kelas'),
         ]);
         // $add = new kelas;
         // $add->nama_kelas = $request->nama_kelas;
@@ -72,8 +71,8 @@ class kelascontroller extends Controller
     public function edit($id)
     {
         $kelas = kelas::find($id);
-      // dd($kelas->nama_kelas);
-      return redirect()->route('kelas.index')->with('success','Data kelas Update successfully');
+        // dd($kelas->nama_kelas);
+        return redirect()->route('kelas.index')->with('success','Data kelas Update successfully');
     }
 
     /**
@@ -85,13 +84,13 @@ class kelascontroller extends Controller
      */
     public function update(Request $request, $id)
     {
+        
         $kelas = kelas::find($id);
-      $absensi->nama_kelas = $request->nama_kelas;
-      $absensi->nama_wali_kelas = $request->nama_wali_kelas;
-      $absensi->ketua_kelas = $request->nama_ketua_kelas;
-      $absensi->keterangan = $request->keterangan;
-      $absensi->save();
-      // dd($absensi);
+        // dd($kelas);
+        $kelas->id_kelas = $request->id_kelas;
+        $kelas->kode_kelas = $request->kode_kelas;
+        $kelas->save();
+        // dd($kelas);
       // return view('content/kelas/kelas', compact('absensi'));
       // return redirect('absen');
       return redirect()->route('kelas.index')
