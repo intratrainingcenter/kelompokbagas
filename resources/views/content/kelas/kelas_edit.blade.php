@@ -17,7 +17,7 @@
 <section class="content-header">
   <h1>
     Kelas
-    <small>Data Kelas</small>
+    <small>Data Kelas Siswa</small>
   </h1>
 </section>
 
@@ -43,13 +43,13 @@
      								<div class="col-md-6">
      										<label for="kode" class="control-label">ID Siswa</label>
      										<div class="form-group">
-                            {!! Form::text('id_siswa', $kelas->id_siswa, array('class' => 'form-control','required' => '')) !!}
+                            {!! Form::text('id_siswa', $kelas->id_siswa, array('placeholder' => 'id','class' => 'form-control','required' => '')) !!}
      										</div>
      								</div>
      								<div class="col-md-6">
-     										<label for="kode" class="control-label">Kode Kelas</label>
+     										<label for="kode" class="control-label">Kode Guru</label>
      										<div class="form-group">
-     												{!! Form::text('kode_kelas', $attendance->kode_kelas, array('placeholder' => 'Nama','class' => 'form-control','required' => '')) !!}
+     												{!! Form::text('kode_siswa', $kelas->, array('placeholder' => 'Kode Kelas','class' => 'form-control','required' => '')) !!}
      										</div>
      								</div>
      								 <div class="ln_solid"></div>
