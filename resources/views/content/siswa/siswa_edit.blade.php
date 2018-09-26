@@ -103,6 +103,16 @@ $(function() {
                       </select>
                       </div>
                     </div>
+                    <div class="col-md-6">
+                      <label for="kode" class="control-label">Jadwal Piket</label>
+                      <div class="form-group">
+                      <select class="form-control" name="jadwalpiket">
+                        @foreach($picket as $pickets)
+                      <option value="{{$pickets->id}}">{{$pickets->hari}}</option>
+                      @endforeach
+                      </select>
+                      </div>
+                    </div>
      								 <div class="ln_solid"></div>
      									<div class="form-group">
      										<div class="col-md-6 col-sm-6 col-xs-12">

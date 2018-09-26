@@ -14,14 +14,32 @@ class jadwalpiketTableSeeder extends Seeder
     {
       DB::table('jadwalpikets')->insert([
     [
-    'id_siswa'=> '1',
-    'hari'=> 'Selasa',
+    'hari'=> 'Senin',
     'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
     'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
   ],
   [
-'id_siswa'=> '2',
-'hari'=> 'Senin',
+'hari'=> 'Selasa',
+'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
+],
+[
+'hari'=> 'Rabu',
+'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
+],
+[
+'hari'=> 'Kamis',
+'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
+],
+[
+'hari'=> 'Jumat',
+'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
+],
+[
+'hari'=> 'Sabtu',
 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
 'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
 ]

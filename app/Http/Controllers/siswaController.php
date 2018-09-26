@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\siswa;
 use App\kelas;
+use App\jadwalpiket;
 class siswaController extends Controller
 {
     /**
@@ -18,8 +19,9 @@ class siswaController extends Controller
         $student = siswa::with('join_class')->get();
         // dd($student);
         $class = kelas::get();
+        $picket = jadwalpiket::get();
         // dd($class);
-        return View('content/siswa/siswa',compact('student','class'));
+        return View('content/siswa/siswa',compact('student','class','picket'));
     }
 
     /**
@@ -46,6 +48,7 @@ class siswaController extends Controller
     $student->jenis_klamin = $request->jenis_klamin;
     $student->tempat_tanggal_lahir = $request->tanggal_lahir;
     $student->id_kelas =  $request->kelas;
+    $student->id_jadwalpiket =  $request->jadwalpiket;
     $student->save();
     return redirect()->route('siswa.index')
     ->with('success','siswa created successfully');
@@ -74,8 +77,9 @@ class siswaController extends Controller
       $student = siswa::with('join_class')->where('id', $id)->first();
       // dd($student);
       $class = kelas::get();
+      $picket = jadwalpiket::get();
       // dd($class);
-      return View('content/siswa/siswa_edit',compact('student','class'));
+      return View('content/siswa/siswa_edit',compact('student','class','picket'));
     }
 
     /**
@@ -93,6 +97,7 @@ class siswaController extends Controller
       $student->jenis_klamin = $request->jenis_klamin;
       $student->tempat_tanggal_lahir = $request->tanggal_lahir;
       $student->id_kelas =  $request->kelas;
+      $student->id_jadwalpiket =  $request->jadwalpiket;
       $student->save();
       // dd($student);
       // return view('content/absen/absen', compact('absensi'));

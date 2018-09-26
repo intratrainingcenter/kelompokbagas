@@ -33,10 +33,11 @@ Route::get('/matapelajaran', function(){
 // Route::get('/absen', function(){
 //   return view('content/absen/absen');
 // });
-Route::get('/jadwalpiket', function(){
-  return view('content/jadwalpiket/jadwalpiket');
-});
+// Route::get('/jadwalpiket', function(){
+//   return view('content/jadwalpiket/jadwalpiket');
+// });
 Route::resource('seluruh', 'testcontrollerApi');
 Route::resource('absen','absensiControler');
 Route::resource('siswa','siswaController');
 Route::resource('mapel','mapelController');
+Route::resource('jadwalpiket','jadwalpiketController');

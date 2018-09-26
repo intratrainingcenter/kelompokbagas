@@ -14,6 +14,7 @@ class siswaTableSeeder extends Seeder
       DB::table('siswas')->insert([
     [
     'id_kelas'=> '1',
+    'id_jadwalpiket'=> '1',
     'nis'=> '1923233',
     'nama_siswa'=> 'Jono',
     'jenis_klamin'=> 'Laki-Laki',
@@ -23,6 +24,7 @@ class siswaTableSeeder extends Seeder
   ],
   [
 'id_kelas'=> '2',
+'id_jadwalpiket'=> '2',
 'nis'=> '1921232',
 'nama_siswa'=> 'jabal',
 'jenis_klamin'=> 'Laki-Laki',
