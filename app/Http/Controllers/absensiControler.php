@@ -42,6 +42,7 @@ class absensiControler extends Controller
      */
     public function store(Request $request)
     {
+      //script sulit
       $find = siswa::where('nis', $request->nis)->first();
       // dd($find->nama_siswa);
       if ($find != null) {

@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\siswa;
-use App\absensi;
+use App\kelas;
 class siswaController extends Controller
 {
     /**
@@ -15,11 +15,11 @@ class siswaController extends Controller
      */
     public function index()
     {
-        $student = siswa::with('join_absensi')->get();
+        $student = siswa::with('join_class')->get();
         // dd($student);
-        $attendance = absensi::all();
-        // dd($attendance);
-        return View('content/siswa/siswa',compact('student','attendance'));
+        $class = kelas::get();
+        // dd($class);
+        return View('content/siswa/siswa',compact('student','class'));
     }
 
     /**
@@ -40,7 +40,16 @@ class siswaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+    $student = new siswa;
+    $student->nis = $request->nis;
+    $student->nama_siswa = $request->nama_siswa;
+    $student->jenis_klamin = $request->jenis_klamin;
+    $student->tempat_tanggal_lahir = $request->tanggal_lahir;
+    $student->id_kelas =  $request->kelas;
+    $student->save();
+    return redirect()->route('siswa.index')
+    ->with('success','siswa created successfully');
+
     }
 
     /**
@@ -62,7 +71,11 @@ class siswaController extends Controller
      */
     public function edit($id)
     {
-        //
+      $student = siswa::with('join_class')->where('id', $id)->first();
+      // dd($student);
+      $class = kelas::get();
+      // dd($class);
+      return View('content/siswa/siswa_edit',compact('student','class'));
     }
 
     /**
@@ -74,7 +87,18 @@ class siswaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+      $student = siswa::find($id);
+      $student->nis = $request->nis;
+      $student->nama_siswa = $request->nama_siswa;
+      $student->jenis_klamin = $request->jenis_klamin;
+      $student->tempat_tanggal_lahir = $request->tanggal_lahir;
+      $student->id_kelas =  $request->kelas;
+      $student->save();
+      // dd($student);
+      // return view('content/absen/absen', compact('absensi'));
+      // return redirect('absen');
+      return redirect()->route('siswa.index')
+      ->with('edit','siswa update successfully');
     }
 
     /**
@@ -85,6 +109,9 @@ class siswaController extends Controller
      */
     public function destroy($id)
     {
-        //
+      $attendance = siswa::find($id);
+      $attendance->delete();
+      // dd($attendance);
+      return redirect()->route('siswa.index')->with('delete','siswa deleted successfully');
     }
 }

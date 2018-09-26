@@ -27,8 +27,8 @@ $(function() {
 <!-- Content Header (Page header) -->
 <section class="content-header">
   <h1>
-    Absen
-    <small>Data Absensi Siswa</small>
+    Siswa
+    <small>Data Siswa</small>
   </h1>
 </section>
 
@@ -54,12 +54,6 @@ $(function() {
       </button>
         <p>{{ $message }}</p>
     </div>
-    @elseif ($message = Session::get('not_success'))
-    <div class="alert alert-danger alert alert-danger alert-dismissible fade in" role="alert" >
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
-      </button>
-        <p>{{ $message }}</p>
-    </div>
 @endif
 
 
@@ -68,29 +62,51 @@ $(function() {
      					<div class="col-md-12 col-sm-12 col-xs-12">
      								<div class="row clearfix">
      											<div class="container-fluid">
-                  {!! Form::open(array('route' => 'absen.store','method'=>'POST','files' => 'true')) !!}
-     								<div class="col-md-6" >
+                    {!! Form::model($student, ['method' => 'PATCH', 'files' => 'true', 'route' =>['siswa.update', $student->id]]) !!}
+     								<div class="col-md-6">
      										<label for="kode" class="control-label">NIS Siswa</label>
      										<div class="form-group">
-                            {!! Form::number('nis', null, array('placeholder' => 'Nis','class' => 'form-control','required' => '')) !!}
+                            {!! Form::number('nis', $student->nis, array('class' => 'form-control','required' => '')) !!}
+     										</div>
+     								</div>
+     								<div class="col-md-6">
+     										<label for="kode" class="control-label">Nama Siswa</label>
+     										<div class="form-group">
+     												{!! Form::text('nama_siswa', $student->nama_siswa, array('placeholder' => 'Nama','class' => 'form-control','required' => '')) !!}
      										</div>
      								</div>
                     <div class="col-md-6">
-                      <label for="kode" class="control-label">Absensi</label>
+                      <label for="kode" class="control-label">Jenis Kelamin</label>
                       <div class="form-group">
-                        {!!Form::select('presensi', ['Sakit' => 'Sakit', 'Ijin' => 'Ijin', 'Alfa' => 'Alfa'], null, array('class' => 'form-control','placeholder' => 'Mohon Masukan Presensi Siswa','required' => ''))!!}
+                        <select class="form-control" name="jenis_klamin">
+                          <option value="{{$student->jenis_klamin}}">{{$student->jenis_klamin}}</option>
+                          <option value="">========================================</option>
+                          <option value="Laki-Laki">Laki-Laki</option>
+                          <option value="Perempuan">Perempuan</option>
+                        </select>
                       </div>
                     </div>
      								<div class="col-md-6">
-     										<label for="kode" class="control-label">Keterangan</label>
+     										<label for="kode" class="control-label">Tanggal Lahir</label>
      										<div class="form-group">
-     												{!! Form::textarea('keterangan', null, array('placeholder' => 'keterangan','class' => 'form-control','required' => '','style' => 'width:500px; height:100px;')) !!}
+                          <input class="form-control" type="text" name="" placeholder="{{$student->tempat_tanggal_lahir}}" disabled>
+     												{!! Form::date('tanggal_lahir', null, array('class' => 'form-control','required' => '')) !!}
      										</div>
      								</div>
+                    <div class="col-md-6">
+                      <label for="kode" class="control-label">Kelas</label>
+                      <div class="form-group">
+                      <select class="form-control" name="kelas">
+                        @foreach($class as $classs)
+                      <option value="{{$classs->id}}">{{$classs->kode_kelas}}</option>
+                      @endforeach
+                      </select>
+                      </div>
+                    </div>
      								 <div class="ln_solid"></div>
      									<div class="form-group">
      										<div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="submit" value="Submit" class="btn btn-success">
+                          <input type="submit" value="Edit" class="btn btn-warning">
      										<div class="col-md-6 col-sm-6 col-xs-12">
                           <button class="btn btn-primary" type="reset">Reset</button>
      										</div>
@@ -103,48 +119,6 @@ $(function() {
       </div>
     </div>
     </div>
-
-    <div class="x_panel">
-    <div class="x_title">
-      <center>
-    <h2> Data Absensi Siswa</h2>
-      </center>
-      <br>
-    </div>
-    <div class="x_content">
-      <table id="example" class="table table-striped table-bordered" style="width:100%">
-      <thead>
-        <tr>
-          <th class="column-title">No</th>
-          <th class="column-title">Nis Siswa</th>
-          <th class="column-title">Nama Siswa</th>
-          <th class="column-title">Absensi</th>
-          <th class="column-title">Keterangan</th>
-          <th class="column-title">Action</th>
-        </tr>
-      </thead>
-    	@php
-    	$no= 1;
-    	@endphp
-    	<tbody>
-        @foreach($attendance as $attendances)
-    		<tr>
-    			<td>{{$no++}}</td>
-    			<td>{{$attendances->join_to_siswa['nis']}}</td>
-    			<td>{{$attendances->join_to_siswa['nama_siswa']}}</td>
-    			<td>{{$attendances->presensi}}</td>
-    			<td>{{$attendances->keterangan}}</td>
-          <td>
-              <a href="{{ route('absen.edit',$attendances->id) }}" type="button" class="btn btn-warning"><i class="fa fa-pencil"></i></a>
-              {!! Form::open(['method' => 'DELETE','route' => ['absen.destroy', $attendances->id]]) !!}
-              <a><button  onclick=" return confirm('Anda Yakin Menghapus Absensi')" type="submit" class="btn btn-danger"><i class="fa fa-trash-o"></i></button></a>
-              {!! Form::close() !!}
-          </td>
-    		</tr>
-         @endforeach
-    	</tbody>
-     </table>
-    </form>
 </section>
 <!-- /.content -->
 @endsection
