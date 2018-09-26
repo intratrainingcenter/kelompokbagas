@@ -66,7 +66,7 @@ $(function() {
      								<div class="col-md-6">
      										<label for="kode" class="control-label">NIS Siswa</label>
      										<div class="form-group">
-                            {!! Form::number('nis', null, array('placeholder' => 'Nis','class' => 'form-control','required' => '')) !!}
+                            {!! Form::text('nis', null, array('placeholder' => 'Nis','class' => 'form-control','required' => '')) !!}
      										</div>
      								</div>
      								<div class="col-md-6">

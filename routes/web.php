@@ -18,18 +18,18 @@ Route::get('/', function () {
 // Route::get('/nama/{id}', function($id){
 //   return $id;
 // });
-Route::get('/datasiswa', function(){
-  return view('content/datasiswa/datasiswa');
-});
-Route::get('/siswa', function(){
-  return view('content/siswa/siswa');
-});
-Route::get('/kelas', function(){
-  return view('content/kelas/kelas');
-});
-Route::get('/matapelajaran', function(){
-  return view('content/matapelajaran/matapelajaran');
-});
+// Route::get('/datasiswa', function(){
+//   return view('content/datasiswa/datasiswa');
+// });
+// Route::get('/siswa', function(){
+//   return view('content/siswa/siswa');
+// });
+// Route::get('/kelas', function(){
+//   return view('content/kelas/kelas');
+// });
+// Route::get('/matapelajaran', function(){
+//   return view('content/matapelajaran/matapelajaran');
+// });
 // Route::get('/absen', function(){
 //   return view('content/absen/absen');
 // });
@@ -41,3 +41,4 @@ Route::resource('absen','absensiControler');
 Route::resource('siswa','siswaController');
 Route::resource('mapel','mapelController');
 Route::resource('jadwalpiket','jadwalpiketController');
+Route::resource('kelas','kelasController');
