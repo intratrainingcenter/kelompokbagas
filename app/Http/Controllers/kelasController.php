@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\kelas;
-use App\siswa;
 class kelasController extends Controller
 {
     /**
@@ -14,11 +13,10 @@ class kelasController extends Controller
      */
     public function index()
     {
-      $class = kelas::with('join_to_student')->get();
+      $class = kelas::all();
       // dd($student);
-      $student = siswa::get();
       // dd($class);
-      return View('content/kelas/kelas',compact('class','student'));
+      return View('content/kelas/kelas',compact('class'));
     }
 
     /**
@@ -39,22 +37,12 @@ class kelasController extends Controller
      */
     public function store(Request $request)
     {
-      //script sulit
-      $find = siswa::where('nis', $request->nis)->first();
-      // dd($find->nama_siswa);
-      if ($find != null) {
-        $getsiswa = siswa::where('nis', $request->nis)->first();
-        $id_siswa = $getsiswa->id;
-        kelas::create([
-          'id_siswa' => $id_siswa,
-          'kode_kelas' => request()->get('kelas'),
-        ]);
-        return redirect()->route('kelas.index')
-        ->with('success','kelas created successfully');
-      }else {
-        return redirect()->route('kelas.index')
-        ->with('not_success','kelas not created successfully');
-      }
+      $class = new kelas;
+      $class->wali_kelas = $request->wali_kelas;
+      $class->kode_kelas = $request->kelas;
+      $class->save();
+      return redirect()->route('kelas.index')
+      ->with('success','kelas created successfully');
     }
 
     /**
@@ -76,7 +64,10 @@ class kelasController extends Controller
      */
     public function edit($id)
     {
-        //
+      $class = kelas::all()->where('id', $id)->first();
+      // dd($student);
+      // dd($class);
+      return View('content/kelas/kelas_edit',compact('class'));
     }
 
     /**
@@ -88,7 +79,15 @@ class kelasController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+      $class = kelas::find($id);
+      $class->wali_kelas = $request->wali_kelas;
+      $class->kode_kelas = $request->kelas;
+      $class->save();
+      // dd($student);
+      // return view('content/absen/absen', compact('absensi'));
+      // return redirect('absen');
+      return redirect()->route('kelas.index')
+      ->with('edit','siswa update successfully');
     }
 
     /**
@@ -99,6 +98,9 @@ class kelasController extends Controller
      */
     public function destroy($id)
     {
-        //
+      $attendance = kelas::find($id);
+      $attendance->delete();
+      // dd($attendance);
+      return redirect()->route('kelas.index')->with('delete','kelas deleted successfully');
     }
 }

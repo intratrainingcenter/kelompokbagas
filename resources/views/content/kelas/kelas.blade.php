@@ -64,9 +64,9 @@ $(function() {
      											<div class="container-fluid">
                   {!! Form::open(array('route' => 'kelas.store','method'=>'POST','files' => 'true')) !!}
      								<div class="col-md-6">
-     										<label for="kode" class="control-label">NIS Siswa</label>
+     										<label for="kode" class="control-label">Wali Kelas</label>
      										<div class="form-group">
-                            {!! Form::text('nis', null, array('placeholder' => 'Nis','class' => 'form-control','required' => '')) !!}
+                            {!! Form::text('wali_kelas', null, array('placeholder' => 'Wali Kelas','class' => 'form-control','required' => '')) !!}
      										</div>
      								</div>
                     <div class="col-md-6">
@@ -104,9 +104,7 @@ $(function() {
       <thead>
         <tr>
           <th class="column-title">No</th>
-          <th class="column-title">Nis Siswa</th>
-          <th class="column-title">Nama Siswa</th>
-          <th class="column-title">Jenis Kelamin</th>
+          <th class="column-title">Wali Kelas</th>
           <th class="column-title">Kelas</th>
           <th class="column-title">Action</th>
         </tr>
@@ -118,14 +116,12 @@ $(function() {
         @foreach($class as $classs)
     		<tr>
     			<td>{{$no++}}</td>
-    			<td>{{$classs->join_to_student['nis']}}</td>
-    			<td>{{$classs->join_to_student['nama_siswa']}}</td>
-    			<td>{{$classs->join_to_student['jenis_klamin']}}</td>
+    			<td>{{$classs->wali_kelas}}</td>
     			<td>{{$classs->kode_kelas}}</td>
           <td>
-              <a href="{{ route('siswa.edit',$classs->id) }}" type="button" class="btn btn-warning"><i class="fa fa-pencil"></i></a>
-              {!! Form::open(['method' => 'DELETE','route' => ['siswa.destroy', $classs->id]]) !!}
-              <a><button  onclick=" return confirm('Anda Yakin Menghapus Absensi')" type="submit" class="btn btn-danger"><i class="fa  fa-trash-o"></i></button></a>
+              <a href="{{ route('kelas.edit',$classs->id) }}" type="button" class="btn btn-warning"><i class="fa fa-pencil"></i></a>
+              {!! Form::open(['method' => 'DELETE','route' => ['kelas.destroy', $classs->id]]) !!}
+              <a><button  onclick=" return confirm('Anda Yakin Menghapus Kelas')" type="submit" class="btn btn-danger"><i class="fa  fa-trash-o"></i></button></a>
               {!! Form::close() !!}
           </td>
     		</tr>

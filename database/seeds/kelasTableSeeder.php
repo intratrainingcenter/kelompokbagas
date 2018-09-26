@@ -13,12 +13,12 @@ class kelasTableSeeder extends Seeder
     {
       DB::table('kelas')->insert([
         [
-          'id_siswa'=> '1',
+          'wali_kelas'=> 'Ibu Frida',
           'kode_kelas'=> '5B',
           'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
           'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
         ],[
-          'id_siswa'=> '2',
+          'wali_kelas'=> 'Bapak Fredy',
           'kode_kelas'=> '6A',
           'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
           'updated_at' => Carbon::now()->format('Y-m-d H:i:s')

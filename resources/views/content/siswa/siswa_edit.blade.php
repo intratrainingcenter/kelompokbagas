@@ -107,6 +107,8 @@ $(function() {
                       <label for="kode" class="control-label">Jadwal Piket</label>
                       <div class="form-group">
                       <select class="form-control" name="jadwalpiket">
+                        <option value="{{$student->id}}">{{$student->join_to_picket['hari']}}</option>
+                        <option value="" disabled>======================================</option>
                         @foreach($picket as $pickets)
                       <option value="{{$pickets->id}}">{{$pickets->hari}}</option>
                       @endforeach

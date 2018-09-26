@@ -141,7 +141,7 @@ $(function() {
           <td>
               <a href="{{ route('mapel.edit',$subjectss->id) }}" type="button" class="btn btn-warning"><i class="fa fa-pencil"></i></a>
               {!! Form::open(['method' => 'DELETE','route' => ['mapel.destroy', $subjectss->id]]) !!}
-              <a><button  onclick=" return confirm('Anda Yakin Menghapus Absensi')" type="submit" class="btn btn-danger"><i class="fa  fa-trash-o"></i></button></a>
+              <a><button  onclick=" return confirm('Anda Yakin Menghapus Matapelajaran')" type="submit" class="btn btn-danger"><i class="fa  fa-trash-o"></i></button></a>
               {!! Form::close() !!}
           </td>
     		</tr>
