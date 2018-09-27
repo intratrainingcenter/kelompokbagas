@@ -85,8 +85,8 @@ $(function() {
      										<label for="kode" class="control-label">Kelas</label>
      										<div class="form-group">
                           <select class="form-control" name="kelas">
-                              @foreach($subjects as $subjectss)
-                            <option value="{{$subjectss->join_to_class['id']}}">{{$subjectss->join_to_class['kode_kelas']}}</option>
+                              @foreach($class as $classs)
+                            <option value="{{$classs->id}}">{{$classs->kode_kelas}}</option>
                             @endforeach
                           </select>
      										</div>

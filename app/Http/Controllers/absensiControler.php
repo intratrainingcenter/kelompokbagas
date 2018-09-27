@@ -55,7 +55,7 @@ class absensiControler extends Controller
         ]);
         return redirect()->route('absen.index')
         ->with('success','absensi created successfully');
-      }else {
+        }else {
         return redirect()->route('absen.index')
         ->with('not_success','absensi not created successfully');
       }

@@ -62,15 +62,15 @@
           <th class="column-title">Jadwal Piket</th>
         </tr>
       </thead>
-    	@php
-    	$no= 1;
-    	@endphp
+    	   @php
+    	   $no= 1;
+    	   @endphp
     	<tbody>
         @foreach($picket as $pickets)
-    		<tr>
+    		 <tr>
     			<td>{{$no++}}</td>
     			<td>{{$pickets->hari}}</td>
-    		</tr>
+       	</tr>
          @endforeach
     	</tbody>
      </table>

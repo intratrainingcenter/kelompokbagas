@@ -16,9 +16,11 @@ class mapelController extends Controller
     public function index()
     {
       $subjects = matapelajaran::with('join_to_class')->get();
+      $class = kelas::all();
+      // dd($class);
       // print_r($attendance[0]->join_to_siswa->nis);
       // dd($subjects);
-      return view('content/matapelajaran/matapelajaran', compact('subjects'));
+      return view('content/matapelajaran/matapelajaran', compact('subjects','class'));
     }
 
     /**
