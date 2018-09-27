@@ -75,7 +75,7 @@ class kelascontroller extends Controller
     {
         $kelas = kelas::with('join_to_siswa')->where('id', $id)->first();
       // dd($kelas->kode_kelas);
-      return view('content/kelas/kelas_edit', compact('kelas','siswa'));
+      return view('content/kelas/kelas_edit', compact('kelas'));
 
         // $kelas = kelas::find($id);
         // // dd($kelas->_kelas);
@@ -94,8 +94,8 @@ class kelascontroller extends Controller
         
         $kelas = kelas::find($id);
         // dd($kelas);
-        $kelas->id_kelas = $request->id_kelas;
-        $kelas->kode_kelas = $request->kode_kelas;
+        $kelas->id_siswa = $request->id_siswa;
+        $kelas->kode_kelas = $request->kode_siswa;
         $kelas->save();
         // dd($kelas);
       // return view('content/kelas/kelas', compact('absensi'));
