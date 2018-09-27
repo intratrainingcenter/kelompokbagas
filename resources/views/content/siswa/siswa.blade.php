@@ -66,7 +66,7 @@ $(function() {
      								<div class="col-md-6">
      										<label for="kode" class="control-label">NIS Siswa</label>
      										<div class="form-group">
-                            {!! Form::number('nis', null, array('placeholder' => 'Nis','class' => 'form-control','required' => '')) !!}
+                            {!! Form::text('nis', null, array('placeholder' => 'Nis','class' => 'form-control','required' => '')) !!}
      										</div>
      								</div>
      								<div class="col-md-6">
@@ -93,6 +93,16 @@ $(function() {
                       <select class="form-control" name="kelas">
                           @foreach($class as $classs)
                         <option value="{{$classs->id}}">{{$classs->kode_kelas}}</option>
+                        @endforeach
+                      </select>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <label for="kode" class="control-label">Jadwal Piket</label>
+                      <div class="form-group">
+                      <select class="form-control" name="jadwalpiket">
+                          @foreach($picket as $pickets)
+                        <option value="{{$pickets->id}}">{{$pickets->hari}}</option>
                         @endforeach
                       </select>
                       </div>
@@ -131,6 +141,7 @@ $(function() {
           <th class="column-title">Jenis Kelamin</th>
           <th class="column-title">Tanggal lahir</th>
           <th class="column-title">Kelas</th>
+          <th class="column-title">Jadwal Piket</th>
           <th class="column-title">Action</th>
         </tr>
       </thead>
@@ -146,10 +157,11 @@ $(function() {
     			<td>{{$students->jenis_klamin}}</td>
     			<td>{{$students->tempat_tanggal_lahir}}</td>
     			<td>{{$students->join_class['kode_kelas']}}</td>
+    			<td>{{$students->join_to_picket['hari']}}</td>
           <td>
               <a href="{{ route('siswa.edit',$students->id) }}" type="button" class="btn btn-warning"><i class="fa fa-pencil"></i></a>
               {!! Form::open(['method' => 'DELETE','route' => ['siswa.destroy', $students->id]]) !!}
-              <a><button  onclick=" return confirm('Anda Yakin Menghapus Absensi')" type="submit" class="btn btn-danger"><i class="fa  fa-trash-o"></i></button></a>
+              <a><button  onclick=" return confirm('Anda Yakin Menghapus Siswa')" type="submit" class="btn btn-danger"><i class="fa  fa-trash-o"></i></button></a>
               {!! Form::close() !!}
           </td>
     		</tr>
