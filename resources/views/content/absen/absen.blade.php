@@ -10,6 +10,17 @@
 @endsection
 
 @section('someJS')
+<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap.min.js"></script>
+<script>
+$(function() {
+  $('#example').DataTable();
+  // $('#example2').DataTable({
+  //   ''
+  // });
+});
+</script>
 @endsection
 
 @section('content')
@@ -25,55 +36,67 @@
 <section class="content container-fluid">
   <div class="x_panel">
     <div class="x_content">
+@if ($message = Session::get('success'))
+    <div class="alert alert-success alert alert-success alert-dismissible fade in" role="alert" >
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
+      </button>
+        <p>{{ $message }}</p>
+    </div>
+    @elseif ($message = Session::get('edit'))
+    <div class="alert alert-warning alert alert-warning alert-dismissible fade in" role="alert" >
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
+      </button>
+        <p>{{ $message }}</p>
+    </div>
+    @elseif ($message = Session::get('delete'))
+    <div class="alert alert-danger alert alert-danger alert-dismissible fade in" role="alert" >
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
+      </button>
+        <p>{{ $message }}</p>
+    </div>
+    @elseif ($message = Session::get('not_success'))
+    <div class="alert alert-danger alert alert-danger alert-dismissible fade in" role="alert" >
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
+      </button>
+        <p>{{ $message }}</p>
+    </div>
+@endif
+
+
       <div class="clearfix"></div>
      				<div class="row">
      					<div class="col-md-12 col-sm-12 col-xs-12">
      								<div class="row clearfix">
-     											<form action="#" method="post" id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
      											<div class="container-fluid">
-     											@csrf
-     												<input type="hidden" name="id_ruangan" class="form-control"/>
-
-     								<div class="col-md-6">
+                  {!! Form::open(array('route' => 'absen.store','method'=>'POST','files' => 'true')) !!}
+     								<div class="col-md-6" >
      										<label for="kode" class="control-label">NIS Siswa</label>
      										<div class="form-group">
-     												<input type="text" name="nama_ruangan" value="" class="form-control" required=""/>
-     										</div>
-     								</div>
-     								<div class="col-md-6">
-     										<label for="kode" class="control-label">Nama Siswa</label>
-     										<div class="form-group">
-     												<input type="number" name="harga" value="" class="form-control" required=""/>
+                            {!! Form::text('nis', null, array('placeholder' => 'Nis','class' => 'form-control','required' => '')) !!}
      										</div>
      								</div>
                     <div class="col-md-6">
                       <label for="kode" class="control-label">Absensi</label>
                       <div class="form-group">
-                        <select class="form-control" name="status" required="">
-                          <option value="Tersedia">Sakit</option>
-                          <option value="Full">Ijin</option>
-                          <option value="Rusak">Alfa</option>
-                        </select>
+                        {!!Form::select('presensi', ['Sakit' => 'Sakit', 'Ijin' => 'Ijin', 'Alfa' => 'Alfa'], null, array('class' => 'form-control','placeholder' => 'Mohon Masukan Presensi Siswa','required' => ''))!!}
                       </div>
                     </div>
      								<div class="col-md-6">
      										<label for="kode" class="control-label">Keterangan</label>
      										<div class="form-group">
-     												<input type="text" name="no_kamar" value="" class="form-control" required=""/>
+     												{!! Form::textarea('keterangan', null, array('placeholder' => 'keterangan','class' => 'form-control','required' => '','style' => 'width:500px; height:100px;')) !!}
      										</div>
      								</div>
      								 <div class="ln_solid"></div>
      									<div class="form-group">
      										<div class="col-md-6 col-sm-6 col-xs-12">
-
                           <input type="submit" value="Submit" class="btn btn-success">
      										<div class="col-md-6 col-sm-6 col-xs-12">
-
                           <button class="btn btn-primary" type="reset">Reset</button>
      										</div>
      									</div>
      								 </div>
-     								</form>
+                      {!! Form::close() !!}
      							</div>
      						</div>
      				</div>
@@ -83,15 +106,13 @@
 
     <div class="x_panel">
     <div class="x_title">
+      <center>
     <h2> Data Absensi Siswa</h2>
-    <ul class="nav navbar-right panel_toolbox">
-      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-      </li>
-    </ul>
-    <div class="clearfix"></div>
+      </center>
+      <br>
     </div>
     <div class="x_content">
-      <table id="tabel-print" class="table table-striped" style="width:100%">
+      <table id="example" class="table table-striped table-bordered" style="width:100%">
       <thead>
         <tr>
           <th class="column-title">No</th>
@@ -103,21 +124,21 @@
         </tr>
       </thead>
     	@php
-    	$no=1;
+    	$no= 1;
     	@endphp
     	<tbody>
-        @foreach($absensi as $absensi)
+        @foreach($attendance as $attendances)
     		<tr>
-    			<td>{{$no}}</td>
-    			<td>{{$absensi->nis}}</td>
-    			<td>{{$absensi->nama_siswa}}</td>
-    			<td>{{$absensi->presensi}}</td>
-    			<td>{{$absensi->keterangan}}</td>
+    			<td>{{$no++}}</td>
+    			<td>{{$attendances->join_to_siswa['nis']}}</td>
+    			<td>{{$attendances->join_to_siswa['nama_siswa']}}</td>
+    			<td>{{$attendances->presensi}}</td>
+    			<td>{{$attendances->keterangan}}</td>
           <td>
-              <form method="post" action="">
-                <a href="" type="button" class="btn btn-info"><i class="fa fa-info"></i></a>
-                <a href="" type="button" class="btn btn-warning"><i class="fa fa-pencil"></i></a>
-              </form>
+              <a href="{{ route('absen.edit',$attendances->id) }}" type="button" class="btn btn-warning"><i class="fa fa-pencil"></i></a>
+              {!! Form::open(['method' => 'DELETE','route' => ['absen.destroy', $attendances->id]]) !!}
+              <a><button  onclick=" return confirm('Anda Yakin Menghapus Absensi')" type="submit" class="btn btn-danger"><i class="fa fa-trash-o"></i></button></a>
+              {!! Form::close() !!}
           </td>
     		</tr>
          @endforeach

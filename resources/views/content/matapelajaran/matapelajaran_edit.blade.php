@@ -62,23 +62,23 @@ $(function() {
      					<div class="col-md-12 col-sm-12 col-xs-12">
      								<div class="row clearfix">
      											<div class="container-fluid">
-                  {!! Form::open(array('route' => 'mapel.store','method'=>'POST','files' => 'true')) !!}
+                  {!! Form::model($subjects, ['method' => 'PATCH', 'files' => 'true', 'route' =>['mapel.update', $subjects->id]]) !!}
      								<div class="col-md-6">
      										<label for="kode" class="control-label">Kode Pelajaran</label>
      										<div class="form-group">
-                            {!! Form::text('kode_pelajaran', null, array('placeholder' => 'Kode Pelajaran','class' => 'form-control','required' => '')) !!}
+                            {!! Form::text('kode_pelajaran', $subjects->kode_pelajaran, array('class' => 'form-control','required' => '')) !!}
      										</div>
      								</div>
      								<div class="col-md-6">
      										<label for="kode" class="control-label">Nama Pelajaran</label>
      										<div class="form-group">
-     												{!! Form::text('nama_pelajaran', null, array('placeholder' => 'Nama Pelajaran','class' => 'form-control','required' => '')) !!}
+     												{!! Form::text('nama_pelajaran', $subjects->nama_pelajaran, array('class' => 'form-control','required' => '')) !!}
      										</div>
      								</div>
                     <div class="col-md-6">
                       <label for="kode" class="control-label">Jam Pelajaran</label>
                       <div class="form-group">
-                        {!! Form::text('jam', null, array('placeholder' => 'Jam Pelajaran','class' => 'form-control','required' => '')) !!}
+                        {!! Form::text('jam', $subjects->jam, array('class' => 'form-control','required' => '')) !!}
                       </div>
                     </div>
      								<div class="col-md-6">
@@ -94,7 +94,7 @@ $(function() {
      								 <div class="ln_solid"></div>
      									<div class="form-group">
      										<div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="submit" value="Submit" class="btn btn-success">
+                          <input type="submit" value="Edit" class="btn btn-warning">
      										<div class="col-md-6 col-sm-6 col-xs-12">
                           <button class="btn btn-primary" type="reset">Reset</button>
      										</div>
@@ -107,48 +107,6 @@ $(function() {
       </div>
     </div>
     </div>
-
-    <div class="x_panel">
-    <div class="x_title">
-      <center>
-    <h2> Data Mata Pelajaran</h2>
-      </center>
-      <br>
-    </div>
-    <div class="x_content">
-      <table id="example" class="table table-striped table-bordered" style="width:100%">
-      <thead>
-        <tr>
-          <th class="column-title">No</th>
-          <th class="column-title">Kode Pelajaran</th>
-          <th class="column-title">Nama Pelajaran</th>
-          <th class="column-title">Jam Pelajaran</th>
-          <th class="column-title">Kelas</th>
-          <th class="column-title">Action</th>
-        </tr>
-      </thead>
-    	@php
-    	$no= 1;
-    	@endphp
-    	<tbody>
-        @foreach($subjects as $subjectss)
-    		<tr>
-    			<td>{{$no++}}</td>
-    			<td>{{$subjectss->kode_pelajaran}}</td>
-    			<td>{{$subjectss->nama_pelajaran}}</td>
-    			<td>{{$subjectss->jam}}</td>
-    			<td>{{$subjectss->join_to_class['kode_kelas']}}</td>
-          <td>
-              <a href="{{ route('mapel.edit',$subjectss->id) }}" type="button" class="btn btn-warning"><i class="fa fa-pencil"></i></a>
-              {!! Form::open(['method' => 'DELETE','route' => ['mapel.destroy', $subjectss->id]]) !!}
-              <a><button  onclick=" return confirm('Anda Yakin Menghapus Matapelajaran')" type="submit" class="btn btn-danger"><i class="fa  fa-trash-o"></i></button></a>
-              {!! Form::close() !!}
-          </td>
-    		</tr>
-         @endforeach
-    	</tbody>
-     </table>
-    </form>
 </section>
 <!-- /.content -->
 @endsection

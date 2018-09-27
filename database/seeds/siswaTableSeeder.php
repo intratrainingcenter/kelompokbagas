@@ -1,0 +1,37 @@
+<?php
+
+use Illuminate\Database\Seeder;
+use Illuminate\Support\Carbon;
+class siswaTableSeeder extends Seeder
+{
+    /**
+     * Run the database seeds.
+     *
+     * @return void
+     */
+    public function run()
+    {
+      DB::table('siswas')->insert([
+    [
+    'id_kelas'=> '1',
+    'id_jadwalpiket'=> '1',
+    'nis'=> '1923233',
+    'nama_siswa'=> 'Jono',
+    'jenis_klamin'=> 'Laki-Laki',
+    'tempat_tanggal_lahir'=> '06.12.1899',
+    'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+    'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
+  ],
+  [
+'id_kelas'=> '2',
+'id_jadwalpiket'=> '2',
+'nis'=> '1921232',
+'nama_siswa'=> 'jabal',
+'jenis_klamin'=> 'Laki-Laki',
+'tempat_tanggal_lahir'=> '06.12.1555',
+'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
+]
+]);
+    }
+}
