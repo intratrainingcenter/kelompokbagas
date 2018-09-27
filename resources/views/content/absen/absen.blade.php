@@ -103,15 +103,16 @@ $(function() {
       </div>
     </div>
     </div>
-
-    <div class="x_panel">
-    <div class="x_title">
+<br>
+<br>
+    <div class="panel panel-default">
+    <div class="panel-heading">
       <center>
     <h2> Data Absensi Siswa</h2>
       </center>
       <br>
     </div>
-    <div class="x_content">
+    <div class="panel-body">
       <table id="example" class="table table-striped table-bordered" style="width:100%">
       <thead>
         <tr>
@@ -144,7 +145,8 @@ $(function() {
          @endforeach
     	</tbody>
      </table>
-    </form>
+     </div>
+     </div>
 </section>
 <!-- /.content -->
 @endsection

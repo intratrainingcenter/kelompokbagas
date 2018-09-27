@@ -47,14 +47,15 @@
     </div>
     </div>
 
-    <div class="x_panel">
-    <div class="x_title">
+    
+    <div class="panel panel-default">
+    <div class="panel-heading">
       <center>
     <h2> Data Jadwal Piket Siswa </h2>
       </center>
       <br>
     </div>
-    <div class="x_content">
+    <div class="panel-body">
       <table id="tabel-print" class="table table-striped" style="width:100%">
       <thead>
         <tr>
@@ -74,7 +75,8 @@
          @endforeach
     	</tbody>
      </table>
-    </form>
+     </div>
+     </div>
 </section>
 <!-- /.content -->
 @endsection
