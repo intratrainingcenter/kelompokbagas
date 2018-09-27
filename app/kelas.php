@@ -11,7 +11,10 @@ class kelas extends Model
     'id_siswa','kode_kelas'
 
 ];
+<<<<<<< HEAD
+=======
 public function join_to_siswa(){
   return $this->belongsTo('App\siswa','id_siswa','id');
 }
+>>>>>>> kelas
 }
